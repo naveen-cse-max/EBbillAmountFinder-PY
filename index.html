@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EB bill-Puducherry</title>
+</head>
+<body>
+    <div class="box">
+        <h2>EB Amount - PY</h2>
+        <div class="input">
+            <input type="number" id="pv_val" placeholder="Enter previous value"/>
+            <input type="number" id="pr_val" placeholder="Enter present value"/>
+            <button onclick="calc()">Calculate</button>
+        </div>
+        <div id="resunit"></div>
+        <div id="resamt"></div>
+        
+    </div>
+    
+
+    <script>
+        calc=()=>{
+        let pv_val=document.getElementById('pv_val').value;
+        let pr_val=document.getElementById('pr_val').value;
+        let unitDec=pr_val-pv_val;
+        let resultunit=document.getElementById('resunit');
+        let resultamt=document.getElementById('resamt');
+        let unit=unitDec.toFixed(2);
+        let res=0;
+        if(unit<=100){
+            res=(unit*2.25).toFixed(2);
+        }
+        else if(unit<=200){
+            res=((100*2.25)+(unit-100)*3.25).toFixed(2);
+        }
+        else if(unit<=300){
+            res=((100*2.25)+(100*3.25)+(unit-200)*5.4).toFixed(2);
+        }
+        else if(unit>300){
+            res=((100*2.25)+(100*15)+(100*5.4)+(unit-300)*6.8).toFixed(2);
+        }
+        resultunit.innerText=`Units Used: ${unit}`;
+        resultamt.innerText=`Amount: ${res}`;
+        }
+        
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins',sans-serif;
+            font-size: 18px;
+        }
+        body{
+            padding: 25px 15px;
+        }
+        .box{
+            margin:25px auto;
+            background-color: rgb(164, 224, 189);
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgb(157, 218, 180);
+            padding: 30px 30px;
+            width:max-content;
+            height:max-content;
+        }
+        .box h2{
+            color: white;
+            text-align: center;
+            font-size: 20px;
+        }
+        .box .input{
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+        }
+        .box .input input{
+            margin: 15px auto;
+            border: none;
+            padding: 5px 4px;
+            display: block;
+            margin-bottom: 15px;
+            outline: none;
+            border-radius: 2px;
+        }
+        .box button{
+            align-items: center;
+            text-align: center;
+            justify-content: center; 
+            padding: 3px 3px;
+            background-color: cornflowerblue;
+            color: white;
+            border: none;
+            border-radius: 2px;
+        }
+        #resunit, #resamt{
+            margin-top: 12px;
+            text-align: center;
+            color: white;
+            font-size: 20px;
+            font-weight: 800;
+        }
+    </style>
+</body>
+</html>
